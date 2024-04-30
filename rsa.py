@@ -1,5 +1,4 @@
 #! /bin/python3
-
 from math import isqrt;
 
 # This function test if a number is prime
@@ -47,14 +46,20 @@ def sieve(low, limit: int):
             primes.append(i)
     return primes
 
-# def encrypt():
+def encrypt(plaintext, PR):
 
+    return plaintext
+
+
+def decrypt(ciphertext, PU):
+
+    return ciphertext
 
 def main():
     a = 100
-    print(findPrime(5, 11, 4))
+    print(findPrime(1000, 10000, 10))
+    print(findPrime(1000, 10000, 19))
 
 
 if __name__ == "__main__":
     main()
-
