@@ -1,5 +1,6 @@
+#! /bin/python3
 
-form math import isqrt
+from math import isqrt;
 
 # This function test if a number is prime
 # parameter: @x: int
@@ -16,19 +17,44 @@ def isPrime(x: int ) -> bool:
     return True
 
 
-# This function finds nth prime number
+# This function finds (n)th prime number
 # between low and high
 def findPrime(low :int, high: int, n: int) -> int:
-    primeList = range(low, high)
-    for factor in range(2, low):
-        for index in range(0, (high - low)):
-            if (number % factor == 0):
-                
+    prime = sieve(low, high)
+    if len(prime) >= n:
+        return prime[n - 1]
+    else:
+        return None
 
 
+#Return @primes:array
+# as a list of prime numbers between @low and  @limit
+def sieve(low, limit: int):
+    isPrime = [True] * (limit + 1)
+    isPrime[0] = False
+    isPrime[1] = False
 
-    return 
+    for i in range(2, int (limit ** 0.5) + 1):
+        if (isPrime[i]):
+            j = 2
+            while (i * j) < (limit + 1):
+                isPrime[i*j] = False
+                j = j + 1
+
+    primes = []
+    for i in range(low, limit):
+        if (isPrime[i]):
+            primes.append(i)
+    return primes
+
+# def encrypt():
 
 
-def encrypt()
+def main():
+    a = 100
+    print(findPrime(5, 11, 4))
+
+
+if __name__ == "__main__":
+    main()
 
