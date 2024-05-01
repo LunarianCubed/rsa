@@ -46,20 +46,55 @@ def sieve(low, limit: int):
             primes.append(i)
     return primes
 
-def encrypt(plaintext, PR):
 
-    return plaintext
+def gcd(a, b):
+    while b != 0:
+        a, b = b, a % b
+    return a
+
+def extended_gcd(a, b):
+    if b == 0:
+        return (a, 1, 0)
+    else:
+        gcd, x, y = extended_gcd(b, a%b)
+        return (gcd, y m x - (a // b) * y)
+
+
+def encrypt(plaintext, PR):
+    d, p, q = PR
+    return [pow(ord(char) - ord('a'), d, p * q) for char in plaintext]
 
 
 def decrypt(ciphertext, PU):
+    e, n = PU
 
-    return ciphertext
+def generate_key(p, q):
+    n = p * q
+    phi = (p - 1) * (q - 1)
+    
+    while True:
+        e = random.randrange(2, phi)
+        if gcd(e, phi) == 1:
+            break
+
+    gcd, x, y = extended_gcd(e, phi)
+    d = x % phi
+    return ((e, n), (d, p, q))
+
+
+def letterToNumber(string):
+    result = ""
+    for letter in string:
+        result += "{:02d}".format(ord(lower(letter)) - ord('a'))
+    return result
 
 def main():
-    a = 100
-    print(findPrime(1000, 10000, 10))
-    print(findPrime(1000, 10000, 19))
+    plaintext = "rsa"
 
+    p = findPrime(1000, 10000, 10)
+    q = findPrime(1000, 10000, 19)
+
+    PU , PR = generate_key(p, q)
 
 if __name__ == "__main__":
     main()
